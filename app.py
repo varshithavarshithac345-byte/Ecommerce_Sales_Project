@@ -26,6 +26,7 @@ def load_data():
         os.path.join(BASE_DIR, "data", "*.xlsx"),
         os.path.join(BASE_DIR, "*.csv"),
         os.path.join(BASE_DIR, "data", "*.csv"),
+        os.path.join(BASE_DIR, "*.csv.gz")
     ]
 
     found_files = []
@@ -39,8 +40,8 @@ def load_data():
 
     file_path = found_files[0]
 
-    if file_path.endswith(".csv"):
-        df = pd.read_csv(file_path, encoding="ISO-8859-1")
+    if file_path.endswith(".csv", ".csv.gz"):
+        df = pd.read_csv(file_path, encoding="utf-8")
     else:
         df = pd.read_excel(file_path, engine="openpyxl")
 
