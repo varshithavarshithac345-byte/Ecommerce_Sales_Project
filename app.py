@@ -40,7 +40,7 @@ def load_data():
 
     file_path = found_files[0]
 
-    if file_path.endswith(".csv", ".csv.gz"):
+    if file_path.endswith((".csv", ".csv.gz")):
         df = pd.read_csv(file_path, encoding="utf-8")
     else:
         df = pd.read_excel(file_path, engine="openpyxl")
