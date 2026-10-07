@@ -46,6 +46,11 @@ def load_data():
 
     # Data cleaning & preprocessing
     df = df.dropna(subset=["InvoiceNo", "Quantity", "UnitPrice"])
+    df = df.drop_duplicates()
+    df["InvoiceNo"] = df["InvoiceNo"].astype(str)
+    df = df[~df["InvoiceNo"].str.startswith("C")]
+    df = df[(df["Quantity"] > 0) & (df["UnitPrice"] > 0)]
+    df = df[df["Quantity"] < 50000]
     df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"], errors="coerce")
     df["Sales"] = df["Quantity"] * df["UnitPrice"]
 
@@ -298,3 +303,4 @@ st.caption(
     "Source: Online Retail.xlsx | "
     "All calculations are generated directly from the raw dataset."
 )
+st.caption("Cleaning: removed duplicates, cancellations, non-positive quantity or price, and two cancelled bulk orders (74k and 81k units). Limits: one year of data, one UK retailer, wholesale buyers, 25% of rows without CustomerID, December 2011 is partial.")
