@@ -25,4 +25,4 @@ streamlit run app.py
 One year of data, one UK retailer, many wholesale customers, 25% of rows without a customer ID, and December 2011 is a partial month.
 
 ## Related
-Task 1 analysis notebook: PASTE-YOUR-TASK-1-REPO-LINK-HERE
+Task 1 analysis notebook: https://github.com/varshithavarshithac345-byte/ECOMMERCE_SALES_ANALYSIS
