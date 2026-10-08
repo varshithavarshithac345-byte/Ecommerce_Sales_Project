@@ -52,6 +52,7 @@ def load_data():
     df = df[~df["InvoiceNo"].str.startswith("C")]
     df = df[(df["Quantity"] > 0) & (df["UnitPrice"] > 0)]
     df = df[df["Quantity"] < 50000]
+    df = df[df["StockCode"].astype(str).str.match(r"^\d{5}")]
     df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"], errors="coerce")
     df["Sales"] = df["Quantity"] * df["UnitPrice"]
 
